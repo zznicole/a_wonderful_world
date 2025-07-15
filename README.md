@@ -6,7 +6,9 @@ This is a react 19, next 15, and tailwind project with an intention to spread th
 
 Javascript, TypeScript, React v19, Next v15, Tailwind CSS v4
 
-## While the project is under development, yet to be in production phase. You are welcome to check it out locally. Make sure you have all necessaries installed before running locally.
+##### Test it out locally
+
+While the project is under development, yet to be in production phase. You are welcome to check it out locally. Make sure you have all necessaries installed before running locally.
 
 First, run the development server:
 
