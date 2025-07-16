@@ -1,10 +1,11 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import CardItem from "@/components/ui/CardItem";
 import NEWS_API_KEY from "dotenv";
 
 const apiKey = NEWS_API_KEY;
-
 const title = "A Wonderful World";
+
 export default async function Home() {
   const numsOfNews = 20;
   const url =
@@ -29,9 +30,25 @@ export default async function Home() {
           {title}
         </h1>
         <ul>
-          {articals.map((news) => (
-            <li key={news.id}>{news.title}</li>
-          ))}
+          {articals.map(
+            (news: {
+              title: string;
+              urlToImage: string;
+              description: string;
+              date: string;
+              author: string;
+            }) => (
+              <li key={news.title}>
+                <CardItem
+                  imageUrl={news.urlToImage}
+                  title={news.title}
+                  description={news.description}
+                  date={news.date}
+                  author={news.author}
+                ></CardItem>
+              </li>
+            )
+          )}
         </ul>
       </main>
       <Footer />
