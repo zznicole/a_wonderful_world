@@ -37,13 +37,14 @@ export default async function Home() {
               description: string;
               date: string;
               author: string;
+              publishedAt: string;
             }) => (
               <li key={news.title}>
                 <CardItem
                   imageUrl={news.urlToImage}
                   title={news.title}
                   description={news.description}
-                  date={news.date}
+                  date={news.publishedAt}
                   author={news.author}
                 ></CardItem>
               </li>
