@@ -26,6 +26,7 @@ export default async function Home() {
             <ArticleCard key={article.source.id} article={article} />
           ))}
         </CardList>
+
       </main>
       <Footer />
     </div>
