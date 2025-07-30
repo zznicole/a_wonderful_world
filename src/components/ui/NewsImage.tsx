@@ -7,11 +7,11 @@ type Props = {
 export default function NewsImage({ imageUrl, title }: Props) {
   return (
     <Image
-      className="size-48 shadow-xl rounded-md"
+      className=" shadow-xl rounded-md"
       src={imageUrl}
       alt={title}
       width={500}
-      height={500}
+      height={250}
     />
   );
 }
