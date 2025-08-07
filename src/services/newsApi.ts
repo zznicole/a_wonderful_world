@@ -1,4 +1,5 @@
 import { Article, Category } from "@/types/types";
+import useFetch from "@/hooks/useFetch";
 
 const API_KEY = process.env.NEWS_API_KEY;
 const BASE_URL = "https://gnews.io/api/v4";
@@ -400,25 +401,28 @@ const mockArticles: Article[] = [
   },
 ];
 
+let fetchRequestCount: number = 0;
+
 export async function fetchNews(category: Category, quary: string) {
+  fetchRequestCount++;
+
   const endPoint = quary ? "search" : "top-headlines";
   const params = new URLSearchParams({
     apikey: API_KEY,
     lang: "en",
     country: "au",
-    max: "10",
+    // max: "10",
     ...(quary ? { q: quary } : {}),
     ...(category !== "all" ? { topic: category } : {}),
   });
-  const response = await fetch(`${BASE_URL}/${endPoint}?${params}`);
-  if (!response.ok) {
-    console.error(`News API request failed: ${response.statusText}`);
-    //use mock when the API request fails, which might caused by the number of requests is exceeding the daliy limit 100, etc
-    return mockArticles;
-  }
-  const data = await response.json();
-  const articles: Article[] = data.articles.map(
-    (article: Article, index: number) => ({
+  const url = `${BASE_URL}/${endPoint}?${params}`;
+  const data = await useFetch(url);
+
+  !data && mockArticles;
+
+  const articles: Article[] =
+    data &&
+    data.articles.map((article: Article, index: number) => ({
       id: String(index + 1),
       title: article.title || "untitled",
       description: article.description || "No description availble",
@@ -428,7 +432,6 @@ export async function fetchNews(category: Category, quary: string) {
       image: article.image,
       publishedAt: article.publishedAt || new Date().toISOString(),
       content: article.content,
-    })
-  );
+    }));
   return articles;
 }

@@ -13,8 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "A Wonderful World",
-  description: "Positive News and Things",
+  title: {
+    default: "A Wonderful World",
+    template: "%s | Your App Name",
+  },
+  description: "News and Volunteering opportunities",
+  //info to be decicded
+  // keywords: ["Next.js", "Web App", "Your Keywords"],
+  // metadataBase: new URL('https://mydomain.com'),
+  // themeColor: '#ffffff',
 };
 
 export default function RootLayout({

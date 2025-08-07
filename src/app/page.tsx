@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import { fetchNews } from "@/services/newsApi";
 
 import ArticleCard from "@/components/ui/ArticleCard";
@@ -7,7 +9,7 @@ import Footer from "@/components/Footer";
 
 export default async function Home() {
   const selectedCategory = "all";
-  const searchQuary = "";
+  const [searchQuary, setSearchQuary] = useState("");
 
   const articles = await fetchNews(selectedCategory, searchQuary);
 

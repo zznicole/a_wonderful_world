@@ -7,6 +7,7 @@ type Props = {
 export default function NewsImage({ imageUrl, title }: Props) {
   return (
     <Image
+      loading="lazy"
       className=" shadow-xl rounded-md"
       src={imageUrl}
       alt={title}
